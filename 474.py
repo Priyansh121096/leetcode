@@ -1,3 +1,10 @@
+# https://leetcode.com/problems/ones-and-zeroes/
+# 474. Ones and Zeroes
+
+# Came up with DP myself.
+
+# Solution 1 (AC)
+# TC: O(Smn); SC: O(Smn)
 from collections import Counter
 from typing import List
 
