@@ -1,12 +1,9 @@
 # https://leetcode.com/problems/intersection-of-two-linked-lists/
 # 160. Intersection of Two Linked Lists
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
+# Keep alternating pointers between lists after full traversals. 
+# Sometime they gotta meet (even if at NULL).
+# Most optimal - TO(m+n) SO(1)
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]: 
         currA, currB = headA, headB
@@ -18,12 +15,8 @@ class Solution:
         return currA
             
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
+# Cheating - adding flags to nodes
+# TO(m+n) SO(m)
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]: 
         currA = headA
@@ -38,12 +31,8 @@ class Solution:
             currB = currB.next
 
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
+# Stack based
+# TO(m+n) SO(m+n)
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         s1, s2 = [], []
