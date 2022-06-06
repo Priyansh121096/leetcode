@@ -18,3 +18,22 @@ class Solution:
             return True
         except:
             return False
+
+
+# Reverse LL. It'll reach head if cycle
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if not head:
+            return False
+        
+        prev, curr = head, head.next
+        while curr:
+            if curr is head:
+                return True
+            
+            nxt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nxt
+            
+        return False
