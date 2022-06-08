@@ -12,11 +12,8 @@ class Solution:
         """
         N = len(s)
         
-        if N % 2 == 0 and s[N//2-1] != s[N//2]:
-            return 2
-        
         if N % 2 == 0:
-            left, right = N//2 - 2, N//2 + 1
+            left, right = N//2 - 1, N//2
         else:
             left, right = N//2 - 1, N//2 + 1
             
