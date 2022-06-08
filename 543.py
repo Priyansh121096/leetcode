@@ -8,7 +8,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def dfs(self, node, height):
+    def dfs(self, node):
         """
         :returns: A 2-tuple (height, diameter) of the subtree rooted at `node`.
         """
@@ -21,8 +21,8 @@ class Solution:
             return 1, 0
 
         # Get heights and diameters of left and right subtrees.
-        lh, ld = self.dfs(node.left, height)
-        rh, rd = self.dfs(node.right, height)
+        lh, ld = self.dfs(node.left)
+        rh, rd = self.dfs(node.right)
 
         # Height of the subtree rooted at `node` is 1 plus the
         # maximum of the heights of left and right subtrees.
@@ -39,4 +39,4 @@ class Solution:
         
     
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        return self.dfs(root, 0)[1]
+        return self.dfs(root)[1]
