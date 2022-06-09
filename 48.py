@@ -28,3 +28,21 @@ class Solution:
             right -= 1
             bottom -= 1
             left += 1
+
+class Solution:
+    def rotate(self, mat: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        N = len(mat)
+        
+        # Reverse the matrix (bottom becomes top and top goes to bottom)
+        for i in range(N//2):
+            mat[i], mat[N-i-1] = mat[N-i-1], mat[i]
+            
+        # Transpose the matrix (rows become columns; columns become rows)
+        for i in range(N):
+            for j in range(i):
+                mat[i][j], mat[j][i] = mat[j][i], mat[i][j]
+                
+        
