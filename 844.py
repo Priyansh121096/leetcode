@@ -55,9 +55,13 @@ class Solution:
 # Solutiuon 3 - start from back
 class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
+        # Start from the tails of the strings
         i, j = len(s)-1, len(t)-1
         while (i >= 0) or (j >= 0):
             cs, ct = (s[i] if i >= 0 else ''), (t[j] if j >= 0 else '')
+            
+            # If both the current characters are not backspaces;
+            # if they do not match; the strings do not match.
             if '#' not in (cs, ct):
                 if cs != ct:
                     return False
@@ -66,6 +70,8 @@ class Solution:
                 j -= 1
                 continue
                 
+            # Remove all '<char>#' combinations including combinations like
+            # 'x##', 'xy##', 'xc#b##', etc from S
             if cs == '#':
                 i -= 1
                 hc, sc = 1, 0
@@ -76,6 +82,8 @@ class Solution:
                         sc += 1
                     i -= 1
             
+            # Remove all '<char>#' combinations including combinations like
+            # 'x##', 'xy##', 'xc#b##', etc from T
             if ct == '#':
                 j -= 1
                 hc, sc = 1, 0
