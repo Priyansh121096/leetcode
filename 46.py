@@ -2,21 +2,25 @@
 # 46. Permutations
 
 class Solution:
-    def helper(self, nums, perm):
-        if self.N == len(perm):
+    def helper(self, rem, perm):
+        if not rem:
             self.out.append(perm[:])
-            return 
+            return
         
-        for num in nums:
+        for num in rem:
             perm.append(num)
-            newSet = nums - {num}
-            self.helper(newSet, perm)
+            nrem = rem - {num}
+            self.helper(nrem, perm)
             perm.pop()
     
     def permute(self, nums: List[int]) -> List[List[int]]:
-        self.N = len(nums)
+        self.nums = nums
         self.out = []
-        self.helper(set(nums), [])
+        
+        for num in nums:
+            rem = set(nums) - {num}
+            self.helper(rem, [num])
+            
         return self.out
 
 
