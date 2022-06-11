@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 # 1658. Minimum Operations to Reduce X to Zero
+# https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/discuss/2138014/Python-Prefix-Suffix-Sum-%2B-Two-Sum-(using-both-binary-search-and-hashmap)
 
 
 # Prefix+suffix sum + two sum using binary search - O(nlogn) time and O(n) space.
