@@ -101,3 +101,32 @@ class Solution:
                 minBoth = min(minBoth, i+j+2)
     
         return ans if (ans:=min(minL, minR, minBoth)) is not inf else -1
+
+# Largest subarray summing up to total - x; sliding window
+# O(n) time and O(1) space
+class Solution:
+    def minOperations(self, nums: List[int], x: int) -> int:
+        # If x is less than the extemeties; we can never reduce it to 0.
+        if x < nums[0] and x < nums[-1]:
+            return -1
+        
+        # If x is equal to one of the extemeties; we only need one operation.
+        if x in (nums[0], nums[-1]):
+            return 1
+        
+        # Sliding window approach to find the longest subarray with 
+        # sum == total - x
+        tgt = sum(nums) - x
+        left, currSum = 0, nums[0]
+        maxLen = -inf if currSum != tgt else 1
+        for right in range(1, len(nums)):
+            currSum += nums[right]
+            
+            while left <= right and currSum > tgt:
+                currSum -= nums[left]
+                left += 1
+                
+            if currSum == tgt:
+                maxLen = max(maxLen, right-left+1)
+        
+        return (len(nums) - maxLen) if maxLen != -inf else -1
