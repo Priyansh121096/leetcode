@@ -51,3 +51,22 @@ class Solution:
             )
         
         return "".join(maxPal)
+
+# A bit more optimized code
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        N = len(s)
+        def helper(i, j):
+            while i >= 0 and j < N and s[i] == s[j]:
+                i -= 1
+                j += 1
+            
+            return (i+1, j-1)
+        
+        maxL = (0, 0)
+        for i in range(N):
+            odd = helper(i, i)
+            even = helper(i, i+1)
+            maxL = max([maxL, odd, even], key=lambda x: x[1]-x[0])
+            
+        return s[maxL[0]:maxL[1]+1]
