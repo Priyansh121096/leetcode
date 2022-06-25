@@ -25,7 +25,7 @@ class Solution:
             if i == N-2:
                 return True
             
-            # The below two conditionals check if either of i and i+1 can be
+            # The below two conditions check if either of i and i+1 can be
             # set to the other to satisfy nums[i-1] <= nums[i] <= nums[i+1].
             
             # Can nums[i] be set to nums[i+1]?
