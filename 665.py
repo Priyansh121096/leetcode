@@ -45,3 +45,36 @@ class Solution:
             return False
             
         return True
+
+# Simpler
+class Solution(object):
+    def checkPossibility(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        N = len(nums)
+        
+        # If it's a two element (or less) list; it can always be 
+        # made non-decreasing (ND) with at most one modification.
+        if N <= 2:
+            return True
+            
+        errIdx = None  # Index at which a modification is needed.
+        for i in range(N-1):
+            if nums[i] > nums[i+1]:
+                # If such an index has appeared before; we cannot make
+                # more modifications.
+                if errIdx is not None:
+                    return False
+                
+                # Store the index at which modification is needed.
+                errIdx = i
+            
+        return (
+            errIdx is None                       # Entire array is ND.
+            or errIdx == 0                       # First element can be modified to match the value of the second element.
+            or errIdx == N-2                     # Last second element can be modified to match the value of the last element.
+            or nums[errIdx-1] <= nums[errIdx+1]  # nums[errIdx] = nums[errIdx-1] 
+            or nums[errIdx] <= nums[errIdx+2]    # nums[errIdx+1] = nums[errIdx]
+        )
