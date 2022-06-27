@@ -9,7 +9,7 @@ class Solution:
             if not (0 <= i < M and 0 <= j < N):
                 return
             
-            grid[i][j] = '0'
+            grid[i][j] = '#'
             if (0 <= i-1 < M and 0 <= j < N) and grid[i-1][j] == '1':
                 dfs(i-1, j)
             if (0 <= i+1 < M and 0 <= j < N) and grid[i+1][j] == '1':
