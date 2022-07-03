@@ -25,3 +25,17 @@ class Solution:
             
         return mlen
    
+# Handle empty string organically
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        N, left, mlen, chars = len(s), 0, 0, set()
+        
+        for i in range(N):
+            while s[i] in chars:
+                chars.remove(s[left])
+                left += 1
+            
+            chars.add(s[i])
+            mlen = max(mlen, i-left+1)
+            
+        return mlen
