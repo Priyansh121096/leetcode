@@ -43,7 +43,6 @@ class Solution:
         return head
             
             
-# Single pass
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -73,11 +72,14 @@ class Solution:
         
         middle, back = prev, curr
 
+        # If there's no front/back, return the middle
         if front is None and back is None:
-            return prev
+            return middle
         
         # Attach back to middle's end
         mid_end.next = back
+        
+        # If there's no front, return middle+back
         if front is None:
             return prev
 
