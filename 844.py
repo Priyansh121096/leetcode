@@ -57,7 +57,7 @@ class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
         # Start from the tails of the strings
         i, j = len(s)-1, len(t)-1
-        while (i >= 0) or (j >= 0):
+        while i >= 0 or j >= 0:
             cs, ct = (s[i] if i >= 0 else ''), (t[j] if j >= 0 else '')
             
             # If both the current characters are not backspaces;
