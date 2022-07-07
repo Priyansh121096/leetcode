@@ -4,17 +4,14 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         d = {0: 1}
-        currSum = 0
+        cumSum = 0
         count = 0
         for num in nums:
-            currSum += num
+            cumSum += num
             
-            if currSum - k in d:
-                count += d[currSum-k]
+            if cumSum - k in d:
+                count += d[cumSum-k]
                 
-            if currSum not in d:
-                d[currSum] = 1
-            else:
-                d[currSum] += 1
+            d[cumSum] = d.get(cumSum, 0) + 1
             
         return count

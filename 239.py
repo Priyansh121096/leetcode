@@ -9,20 +9,16 @@ class Solution:
         if len(nums) == 1 or k == 1:
             return nums
         
-        q, arr = deque([]), []
+        queue, out = deque([]), []
         for i in range(len(nums)):
-            #print(i, nums[i], q, arr)
-            while q and nums[q[-1]] < nums[i]:
-                q.pop()
-            q.append(i)
+            while queue and nums[queue[-1]] < nums[i]:
+                queue.pop()
+            queue.append(i)
             
-            if i-k == q[0]:
-                q.popleft()
+            if i-k == queue[0]:
+                queue.popleft()
             
             if i >= k-1:
-                arr.append(nums[q[0]])
+                out.append(nums[queue[0]])
                 
-        return arr
-        
-                
-            
+        return out
