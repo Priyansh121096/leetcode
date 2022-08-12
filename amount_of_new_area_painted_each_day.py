@@ -34,7 +34,7 @@ def getPaintedAreas(paints):
 
 def main():
     paints = [[1, 4], [4, 7], [5, 8]]
-    print(getPaintedAreas(paints))
+    print(getPaintedAreas(paints))  # [3, 3, 1]
 
 if __name__ == "__main__":
     main()
