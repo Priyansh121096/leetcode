@@ -3,9 +3,9 @@
 
 class Solution:
     def countBits(self, n: int) -> List[int]:    
-        out = [0, 1, 1]  # out[i] is the number of 1 bits in `i`.
-        lpo2 = 1  # The largest power of 2 we've received so far.
-        for i in range(3, n+1):
+        out = [0]  # out[i] is the number of 1 bits in `i`.
+        lpo2 = 0  # The largest power of 2 we've received so far.
+        for i in range(1, n+1):
             if i == (1 << (lpo2+1)):
                 # If we receive the next power of 2, reset the count to 1
                 # and increment lpo2.
@@ -20,4 +20,5 @@ class Solution:
                 rem_part = i - remove
                 out.append(1 + out[rem_part])
                 
-        return out[:n+1] if n < 3 else out
+        return out
+        
