@@ -1,6 +1,9 @@
 # https://leetcode.com/problems/remove-k-digits
 
-# Solution #1 - Backtracking - Gives TLE
+# Solution #1 
+# Backtracking gives TLE (22/43)
+# Backtracking with caching gives TLE (23/43)
+from functools import cache
 
 def set_bit(value, bit):
     return value | (1<<bit)
@@ -9,6 +12,7 @@ def clear_bit(value, bit):
     return value & ~(1<<bit)
 
 class Solution:
+    @cache
     def minNumber(self, bits: int, k: int):
         if k == self.maxK:
             res, mul = 0, 1
