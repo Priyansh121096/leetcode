@@ -37,3 +37,29 @@ class Solution:
     def removeKdigits(self, num: str, k: int) -> str:
         self.num, self.N, self.maxK = [int(x) for x in num], len(num), k
         return str(self.minNumber((2**self.N)-1, 0))
+
+
+# Solution #2
+# Simpler recursion - gives TLE (23/43)
+from functools import cache
+
+class Solution:
+    @cache
+    def removeOne(self, num):
+        num = [int(x) for x in num]
+        minRes = float("inf")
+        for i in range(len(num)):
+            res = 0
+            for j in range(len(num)):
+                if i == j:
+                    continue
+                res = res*10 + num[j]
+            minRes = min(minRes, res)
+        return str(minRes)
+
+    def removeKdigits(self, num: str, k: int) -> str:
+        if k == 1:
+            return self.removeOne(num)
+
+        new_num = self.removeOne(num[:len(num)-k+1])
+        return self.removeKdigits(f"{new_num}{num[len(num)-k+1:]}", k-1)
