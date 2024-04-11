@@ -14,3 +14,25 @@ class Solution:
                 left += 1
                      
         return minL if minL != inf else 0
+
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        i, s, minL = 0, 0, float("inf")
+        for j in range(len(nums)):
+            s += nums[j]
+            if s < target:
+                continue
+
+            while i < j and s >= target:
+                s -= nums[i]
+                i += 1
+
+            # This means that i == j
+            if s >= target:
+                return 1
+            
+            # This means that s would've gone below target in the last iteration.
+            minL = min(minL, j-i+2)
+
+        return 0 if minL == float("inf") else minL
