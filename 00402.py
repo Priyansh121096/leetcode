@@ -137,3 +137,35 @@ class Solution:
             final_bits >>= 1
 
         return str(res)
+
+# Solution #4 
+# Min heap - passes all test cases
+# O(Nlogk) time - O(k) space
+import sys
+from heapq import heappop, heappush
+
+sys.set_int_max_str_digits(10**5)
+
+class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+        N = len(num)
+        if N == k: return "0"
+        
+        result, li, heap = [], -1, []
+        for i in range(len(num)):
+            c = len(result)
+            if c <= i <= c+k:
+                heappush(heap, (int(num[i]), i))
+            
+            # print("Before pop")
+            # print(heap, li, result)
+            if i == c+k:
+                minNum, minI = heappop(heap)
+                while minI <= li:
+                    minNum, minI = heappop(heap)
+                result.append(str(minNum))
+                li = minI
+            # print("After pop")
+            # print(heap, li, result)
+
+        return str(int("".join(result)))
