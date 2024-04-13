@@ -153,13 +153,11 @@ class Solution:
         
         result, li, heap = [], -1, []
         for i in range(len(num)):
-            c = len(result)
-            if c <= i <= c+k:
-                heappush(heap, (int(num[i]), i))
+            heappush(heap, (int(num[i]), i))
             
             # print("Before pop")
             # print(heap, li, result)
-            if i == c+k:
+            if i == len(result)+k:
                 minNum, minI = heappop(heap)
                 while minI <= li:
                     minNum, minI = heappop(heap)
