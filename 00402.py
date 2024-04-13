@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/remove-k-digits
+# Solution posted with explanation - https://leetcode.com/problems/remove-k-digits/solutions/5016782/min-heap-based-approach-o-nlogk-time-o-k-space/
 
 # Solution #1 
 # Backtracking gives TLE (22/43)
