@@ -143,6 +143,7 @@ class Solution:
 # Min heap - passes all test cases
 # O(Nlogk) time - O(k) space
 import sys
+import functools
 from heapq import heappop, heappush
 
 sys.set_int_max_str_digits(10**5)
@@ -152,17 +153,18 @@ class Solution:
         n = len(N)
         if n == k: return "0"  # When all digits are to be removed.
         
-        M = []     # The resultant number
-        li = -1    # Index of the last digit of N used in M
-        heap = []  # Min-heap of (digit, index) pairs of N
-        for i in range(n):
-            heappush(heap, (int(N[i]), i))
+        M = []            # The resultant number
+        lastIndex = -1    # Index of the last digit of N used in M
+        heap = []         # Min-heap of (digit, index) pairs of N
+        for index, digit in enumerate(N):
+            heappush(heap, (int(digit), index))
             
-            if i == len(M) + k:
-                minNum, minI = heappop(heap)
-                while minI <= li:
-                    minNum, minI = heappop(heap)
-                M.append(str(minNum))
-                li = minI
+            if index == len(M) + k:
+                minDigit, minIndex = heappop(heap)
+                while minIndex <= lastIndex:
+                    minDigit, minIndex = heappop(heap)
+                M.append(minDigit)
+                lastIndex = minIndex
 
-        return str(int("".join(M)))
+        return str(functools.reduce(lambda acc, digit: acc*10+digit, M, 0))
+
