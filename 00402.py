@@ -147,23 +147,21 @@ from heapq import heappop, heappush
 sys.set_int_max_str_digits(10**5)
 
 class Solution:
-    def removeKdigits(self, num: str, k: int) -> str:
-        N = len(num)
-        if N == k: return "0"
+    def removeKdigits(self, N: str, k: int) -> str:
+        n = len(N)
+        if n == k: return "0"  # When all digits are to be removed.
         
-        result, li, heap = [], -1, []
-        for i in range(len(num)):
-            heappush(heap, (int(num[i]), i))
+        M = []     # The resultant number
+        li = -1    # Index of the last digit of N used in M
+        heap = []  # Min-heap of (digit, index) pairs of N
+        for i in range(n):
+            heappush(heap, (int(N[i]), i))
             
-            # print("Before pop")
-            # print(heap, li, result)
-            if i == len(result)+k:
+            if i == len(M) + k:
                 minNum, minI = heappop(heap)
                 while minI <= li:
                     minNum, minI = heappop(heap)
-                result.append(str(minNum))
+                M.append(str(minNum))
                 li = minI
-            # print("After pop")
-            # print(heap, li, result)
 
-        return str(int("".join(result)))
+        return str(int("".join(M)))
