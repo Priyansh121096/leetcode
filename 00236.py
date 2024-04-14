@@ -51,7 +51,7 @@ class Solution:
         # Find LCAs of p and q in the left and the right subtrees.
         left, right = self.lowestCommonAncestor(root.left, p, q), self.lowestCommonAncestor(root.right, p, q)
         
-        # If neither of them exist, it means we weren't able to p and q in any subtree.
+        # If neither of them exists, it means we weren't able to p and q in any subtree.
         if not left and not right:
             return 
         
