@@ -38,3 +38,28 @@ class Solution:
             return sumL
 
         return self.sumOfLeftLeaves(root.left, sumL, True) + self.sumOfLeftLeaves(root.right, sumL, False)
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        stack, sumL = [(root, False)], 0
+        while stack:
+            top, is_left = stack.pop()
+
+            if top.left or top.right:
+                if top.left:
+                    stack.append((top.left, True))
+                if top.right:
+                    stack.append((top.right, False))
+                continue
+            else:
+                if is_left:
+                    sumL += top.val
+                
+        return sumL
