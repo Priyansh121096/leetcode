@@ -1,4 +1,3 @@
-# https://leetcode.com/problems/accounts-merge/
 class Solution:
     def find(self, x):
         if self.parent[x] != x:
@@ -23,36 +22,17 @@ class Solution:
         for i, account in enumerate(accounts):
             name, *emails = account
 
-            for j, email in enumerate(emails):
+            for email in emails:
                 nodes[email].add(i)
                 email_names[email] = name
 
         # print(nodes)
-        reverse_nodes = defaultdict(set)
-        for node in nodes:
-            for account in nodes[node]:
-                reverse_nodes[account].add(node)
-
-        # print(reverse_nodes)
-        # print(email_names)
-
-        edges = set()
-        for node in nodes:
-            all_other_emails = set()
-            for account in nodes[node]:
-                all_other_emails.update(reverse_nodes[account])
-            all_other_emails.discard(node)
-
-            for email in all_other_emails:
-                if (email, node) not in edges:
-                    edges.add((node, email))
-
-        # print(edges)
-
         self.parent = {x: x for x in nodes}
-        for e1, e2 in edges:
-            self.union(e1, e2)
+        for account in accounts:
+            name, *emails = account
 
+            for i in range(1, len(emails)):
+                self.union(emails[0], emails[i])
         # print(self.parent)
 
         common_nodes = defaultdict(list)
